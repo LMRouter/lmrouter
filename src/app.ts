@@ -11,11 +11,12 @@ import anthropicRouter from "./routes/v1/anthropic.js";
 import openaiRouter from "./routes/v1/openai.js";
 import v1Router from "./routes/v1.js";
 import type { ContextEnv } from "./types/hono.js";
-import { getConfig } from "./utils/config.js";
+import { getConfig, loadConfigFromCloudflareKV } from "./utils/config.js";
 import { getUptime } from "./utils/utils.js";
 
 const app = new Hono<ContextEnv>();
 
+app.use((c, next) => loadConfigFromCloudflareKV(c).then(() => next()));
 app.use(logger());
 app.use((c, next) => {
   const cfg = getConfig(c);
