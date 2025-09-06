@@ -29,6 +29,7 @@
     "build": "tsc",
     "start": "node dist/index.js config/config.yaml",
     "deploy": "wrangler deploy --minify --tsconfig tsconfig.worker.json",
+    "deploy:staging": "wrangler deploy --env staging --minify --tsconfig tsconfig.worker.json",
     "cf-typegen": "wrangler types --env-interface CloudflareBindings --tsconfig tsconfig.worker.json",
     "lint": "prettier --check .",
     "lint:fix": "prettier --write .",
