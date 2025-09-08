@@ -28,7 +28,7 @@ export const balance = pgTable("balance", {
     .primaryKey(),
   ownerType: text("owner_type").notNull(),
   ownerId: text("owner_id").notNull(),
-  balance: numeric("balance", { precision: 20, scale: 8 })
+  balance: numeric("balance", { precision: 21, scale: 9 })
     .default("0")
     .notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
