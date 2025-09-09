@@ -20,6 +20,12 @@
   "env": {
     "staging": {
       "name": "lmrouter-staging",
+      "kv_namespaces": [
+        {
+          "binding": "LMROUTER_CONFIG_KV",
+          "id": "e2dad7cff83d490bb291b529334fa76b",
+        },
+      ],
     },
   },
 }
