@@ -4,10 +4,11 @@
 import { betterAuth, type BetterAuthPlugin } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { stripe } from "@better-auth/stripe";
+import { Decimal } from "decimal.js";
 import type { Context } from "hono";
 import { HTTPException } from "hono/http-exception";
 
-import { handleStripeWebhook } from "./billing.js";
+import { handleStripeWebhook, updateBilling } from "./billing.js";
 import { getConfig } from "./config.js";
 import { getDb } from "./database.js";
 import { sendVerificationEmail } from "./email.js";
@@ -53,10 +54,28 @@ export const getAuth = (
         user: {
           create: {
             after: async (user) => {
+              const cfg = getConfig(c);
+              if (!cfg.auth.enabled) {
+                return;
+              }
               await getDb(c).insert(balance).values({
                 ownerType: "user",
                 ownerId: user.id,
               });
+              if (cfg.auth.billing.initial_credit > 0) {
+                await updateBilling(
+                  "user",
+                  user.id,
+                  new Decimal(cfg.auth.billing.initial_credit),
+                  {
+                    type: "promotional_credit",
+                    data: {
+                      source: "signup",
+                    },
+                  },
+                  c,
+                );
+              }
             },
           },
         },

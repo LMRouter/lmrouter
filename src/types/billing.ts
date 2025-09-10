@@ -53,6 +53,14 @@ export interface LMRouterLedgerMetadataPayment {
   data: Record<string, unknown>;
 }
 
+export interface LMRouterLedgerMetadataPromotionalCredit {
+  type: "promotional_credit";
+  data: {
+    source: string;
+  };
+}
+
 export type LMRouterLedgerMetadata =
   | LMRouterLedgerMetadataApiCall
-  | LMRouterLedgerMetadataPayment;
+  | LMRouterLedgerMetadataPayment
+  | LMRouterLedgerMetadataPromotionalCredit;
