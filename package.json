@@ -53,6 +53,7 @@
     "json-logic-js": "^2.0.5",
     "music-metadata": "^11.8.3",
     "openai": "^5.19.1",
+    "resend": "^6.0.3",
     "stripe": "^18.5.0",
     "yaml": "^2.8.1"
   },

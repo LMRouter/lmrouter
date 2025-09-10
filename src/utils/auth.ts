@@ -10,6 +10,7 @@ import { HTTPException } from "hono/http-exception";
 import { handleStripeWebhook } from "./billing.js";
 import { getConfig } from "./config.js";
 import { getDb } from "./database.js";
+import { sendVerificationEmail } from "./email.js";
 import { balance } from "../models/billing.js";
 import { getStripe } from "./stripe.js";
 import type { ContextEnv } from "../types/hono.js";
@@ -40,6 +41,13 @@ export const getAuth = (
       }),
       emailAndPassword: {
         enabled: true,
+        requireEmailVerification: true,
+      },
+      emailVerification: {
+        sendVerificationEmail: async ({ user, url }) => {
+          await sendVerificationEmail(user, url, c);
+        },
+        autoSignInAfterVerification: true,
       },
       databaseHooks: {
         user: {

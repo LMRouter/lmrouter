@@ -37,6 +37,13 @@ export interface LMRouterConfigAuthEnabled {
     social_providers?: Record<string, any>;
   };
   billing: LMRouterConfigAuthEnabledBilling;
+  email: {
+    resend: {
+      api_key: string;
+    };
+    from_email: string;
+    reply_to_email: string;
+  };
 }
 
 export type LMRouterConfigAuth =
