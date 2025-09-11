@@ -44,7 +44,7 @@ export const ledger = pgTable("ledger", {
     .primaryKey(),
   ownerType: text("owner_type").notNull(),
   ownerId: text("owner_id").notNull(),
-  amount: numeric("amount", { precision: 20, scale: 8 }).notNull(),
+  amount: numeric("amount", { precision: 21, scale: 9 }).notNull(),
   metadata: jsonb("metadata").$type<LMRouterLedgerMetadata>().notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
