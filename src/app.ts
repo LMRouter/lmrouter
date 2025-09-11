@@ -26,7 +26,7 @@ app.use((c, next) => {
   return cors({
     origin: cfg.auth.better_auth.trusted_origins,
     allowHeaders: ["Content-Type", "Authorization"],
-    allowMethods: ["POST", "GET", "OPTIONS"],
+    allowMethods: ["POST", "GET", "PATCH", "DELETE", "OPTIONS"],
     exposeHeaders: ["Content-Length"],
     maxAge: 600,
     credentials: true,
