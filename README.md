@@ -16,19 +16,7 @@ It’s an **open-source alternative to OpenRouter**, but goes far beyond languag
 
 ## Quick Start
 
-LMRouter is still under active development. When the full service is launched, it will be available at [lmrouter.com](https://lmrouter.com).
-
-For now, you can try out LMRouter by connecting **Claude Code** to the demo server. This allows Claude Code to run on any model available through OpenRouter, not just Claude itself.
-
-The demo environment proxies requests to OpenRouter and supports both the **OpenAI Chat Completions API** and the **Anthropic Messages API**. It runs in **BYOK (Bring Your Own Key)** mode, which means you’ll need to supply your own OpenRouter API key.
-
-**Connect Claude Code to LMRouter**
-
-```bash
-ANTHROPIC_BASE_URL=https://api.lmrouter.com/anthropic \
-ANTHROPIC_AUTH_TOKEN=BYOK:<YOUR_OPENROUTER_API_KEY> \
-ANTHROPIC_MODEL=<YOUR_MODEL_NAME> claude
-```
+LMRouter service is available at [lmrouter.com](https://lmrouter.com). Please refer to the [documentation](https://docs.lmrouter.com/) for more information.
 
 ### Local Development/Deployment
 
