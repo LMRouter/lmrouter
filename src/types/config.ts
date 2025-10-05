@@ -80,6 +80,12 @@ export interface LMRouterConfigProvider {
   responses?: boolean;
   base_url?: string;
   api_key: string;
+  keys?: LMRouterConfigProviderKey[];
+}
+
+export interface LMRouterConfigProviderKey {
+  api_key: string;
+  weight?: number;
 }
 
 export interface LMRouterConfigModelProviderPricingFixed {
@@ -113,6 +119,7 @@ export type LMRouterConfigModelProviderPricing =
 export interface LMRouterConfigModelProvider {
   provider: string;
   model: string;
+  weight?: number;
   context_window?: number;
   max_tokens?: number;
   responses_only?: boolean;
