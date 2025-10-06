@@ -123,6 +123,7 @@ export type LMRouterConfigModelType =
   | "language"
   | "image"
   | "embedding"
+  | "rerank"
   | "audio";
 
 export interface LMRouterConfigModel {
