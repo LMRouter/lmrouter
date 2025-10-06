@@ -33,6 +33,16 @@ providers:
     responses: false
     base_url: https://openrouter.ai/api/v1
     api_key: sk-openrouter-api-key
+  groq1:
+    type: openai
+    base_url: https://api.groq.com/openai/v1
+    api_key: sk-groq-api-key
+  groq2:
+    type: openai
+    base_url: https://api.groq.com/openai/v1
+    keys:
+      - api_key: sk-groq-api-key-1
+      - api_key: sk-groq-api-key-2
 
 models:
   openai/gpt-5:

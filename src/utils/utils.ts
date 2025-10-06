@@ -9,6 +9,7 @@ import { getConnInfo as getConnInfoNode } from "@hono/node-server/conninfo";
 import { recordApiCall } from "./billing.js";
 import { TimeKeeper } from "./chrono.js";
 import { getConfig } from "./config.js";
+import { LoadBalancer } from "./load-balancing.js";
 import type {
   LMRouterConfigModel,
   LMRouterConfigModelProvider,
@@ -92,6 +93,7 @@ export const iterateModelProviders = async (
 ): Promise<any> => {
   const cfg = getConfig(c);
   let error: any = null;
+  let result: any = null;
 
   if (!c.var.model) {
     return c.json(
@@ -104,20 +106,30 @@ export const iterateModelProviders = async (
     );
   }
 
-  for (const providerCfg of c.var.model.providers) {
+  // Get the providers list ordered by the smooth weighted round-robin algorithm.
+  // This provides both load balancing and a predictable order for failover.
+  const orderedProviders = LoadBalancer.getOrderedProviders(
+    c.var.model.providers,
+  );
+
+  for (const providerCfg of orderedProviders) {
     const provider = cfg.providers[providerCfg.provider];
     if (!provider) {
       continue;
     }
 
     const hydratedProvider = { ...provider };
-    hydratedProvider.api_key =
-      c.var.auth?.type === "byok" ? c.var.auth.byok : provider.api_key;
+    const byok = c.var.auth?.type === "byok" ? c.var.auth.byok : undefined;
+    hydratedProvider.api_key = byok
+      ? byok
+      : (LoadBalancer.getApiKey(providerCfg.provider, provider.keys) ??
+        provider.api_key);
 
     const timeKeeper = new TimeKeeper();
     try {
       timeKeeper.record();
-      return await cb(providerCfg, hydratedProvider);
+      result = await cb(providerCfg, hydratedProvider);
+      break;
     } catch (e) {
       timeKeeper.record();
       await recordApiCall(
@@ -136,6 +148,10 @@ export const iterateModelProviders = async (
         console.error(e);
       }
     }
+  }
+
+  if (result) {
+    return result;
   }
 
   if (error) {
