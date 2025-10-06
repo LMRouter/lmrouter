@@ -11,8 +11,9 @@ It’s an **open-source alternative to OpenRouter**, but goes far beyond languag
 - **Audio**: Speech-to-text and audio models
 - **Video**: Video generation (coming soon)
 - **Embeddings**: Semantic search and RAG
+- **Rerank**: Semantic search and RAG
 - **Search**: Jina, Exa, and other web search APIs (coming soon)
-- **Code**: Execution with interpreters such as e2b (coming soon)
+- **Code**: Execution with interpreters such as e2b (coming soon)´
 
 ## Quick Start
 
@@ -67,6 +68,9 @@ OpenAI API
 Anthropic API
   /anthropic/v1/messages          — Messages
   /anthropic/v1/models            — List available models
+
+Rerank API
+  /v1/rerank                      - Rerank
 ```
 
 ### Multi-Provider Support
