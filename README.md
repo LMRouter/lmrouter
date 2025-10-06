@@ -14,6 +14,7 @@ It’s an **open-source alternative to OpenRouter**, but goes far beyond languag
 - **Rerank**: Semantic search and RAG
 - **Search**: Jina, Exa, and other web search APIs (coming soon)
 - **Code**: Execution with interpreters such as e2b (coming soon)´
+
 ## Quick Start
 
 LMRouter service is available at [lmrouter.com](https://lmrouter.com). Please refer to the [documentation](https://docs.lmrouter.com/) for more information.

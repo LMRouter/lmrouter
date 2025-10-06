@@ -22,7 +22,9 @@ const adapters: Record<string, new () => OpenAIRerankOpenAIAdapter> = {
 };
 
 export class OpenAIRerankAdapterFactory {
-  static getAdapter(provider: LMRouterConfigProvider): OpenAIRerankOpenAIAdapter {
+  static getAdapter(
+    provider: LMRouterConfigProvider,
+  ): OpenAIRerankOpenAIAdapter {
     if (!Object.keys(adapters).includes(provider.type)) {
       return new adapters.others();
     }
