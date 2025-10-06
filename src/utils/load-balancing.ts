@@ -27,10 +27,7 @@ export class LoadBalancer {
       return providers;
     }
 
-    const totalWeight = providers.reduce(
-      (acc, p) => acc + (p.weight ?? 1),
-      0,
-    );
+    const totalWeight = providers.reduce((acc, p) => acc + (p.weight ?? 1), 0);
 
     // Find the provider with the highest current weight
     let bestProvider: LMRouterConfigModelProvider | null = null;
@@ -54,7 +51,9 @@ export class LoadBalancer {
       this.providerWeights.set(providerId, maxWeight - totalWeight);
 
       // Sort providers to try the best one first, then the rest
-      return [...providers].sort((a, b) => (a === bestProvider ? -1 : b === bestProvider ? 1 : 0));
+      return [...providers].sort((a, b) =>
+        a === bestProvider ? -1 : b === bestProvider ? 1 : 0,
+      );
     }
 
     // Fallback to the original list if something goes wrong
@@ -73,10 +72,7 @@ export class LoadBalancer {
       return keys[0].api_key;
     }
 
-    const totalWeight = keys.reduce(
-      (acc, key) => acc + (key.weight ?? 1),
-      0,
-    );
+    const totalWeight = keys.reduce((acc, key) => acc + (key.weight ?? 1), 0);
 
     let bestKey: LMRouterConfigProviderKey | null = null;
     let maxWeight = -Infinity;
