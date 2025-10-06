@@ -3,15 +3,15 @@
 
 import { Hono } from "hono";
 
-import { OpenAIRerankAdapterFactory } from "../../../../adapters/openai/v1/rerank/adapter.js";
-import { requireAuth } from "../../../../middlewares/auth.js";
-import { ensureBalance } from "../../../../middlewares/billing.js";
-import { parseModel } from "../../../../middlewares/model.js";
-import type { ContextEnv } from "../../../../types/hono.js";
-import { recordApiCall } from "../../../../utils/billing.js";
-import { TimeKeeper } from "../../../../utils/chrono.js";
-import { iterateModelProviders } from "../../../../utils/utils.js";
-import type { RerankRequest } from "../../../../types/rerank.js";
+import { OpenAIRerankAdapterFactory } from "../../adapters/openai/v1/rerank/adapter.js";
+import { requireAuth } from "../../middlewares/auth.js";
+import { ensureBalance } from "../../middlewares/billing.js";
+import { parseModel } from "../../middlewares/model.js";
+import type { ContextEnv } from "../../types/hono.js";
+import { recordApiCall } from "../../utils/billing.js";
+import { TimeKeeper } from "../../utils/chrono.js";
+import { iterateModelProviders } from "../../utils/utils.js";
+import type { RerankRequest } from "../../types/rerank.js";
 
 const rerankRouter = new Hono<ContextEnv>();
 

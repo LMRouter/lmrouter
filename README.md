@@ -58,7 +58,6 @@ OpenAI API
   /openai/v1/images/generations   — Image generation
   /openai/v1/images/edits         — Image editing
   /openai/v1/embeddings           — Embeddings
-  /openai/v1/rerank               - Rarank
   /openai/v1/responses            — Responses
   /openai/v1/audio/speech         — Audio speech
   /openai/v1/audio/transcriptions — Audio transcriptions
@@ -68,6 +67,9 @@ OpenAI API
 Anthropic API
   /anthropic/v1/messages          — Messages
   /anthropic/v1/models            — List available models
+
+Rerank API
+  /v1/rerank                      - Rerank
 ```
 
 ### Multi-Provider Support
