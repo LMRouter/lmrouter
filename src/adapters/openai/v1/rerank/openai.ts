@@ -33,7 +33,6 @@ export class OpenAIRerankOpenAIAdapter implements OpenAIRerankAdapter {
       path: "/rerank",
       body: request,
     });
-    console.log(rerank);
 
     if (rerank && "usage" in rerank) {
       this.usage = {
